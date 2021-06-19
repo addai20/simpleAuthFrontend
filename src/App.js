@@ -1,5 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
+const api = 'http://localhost:3000/'
+
+
+
+const login = () => {
+    fetch(`${api}login`, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({email: input.email, password:input.password})
+    }).then(resp => resp.json())
+    .then(data => {
+      // stores response from fetch in the local storage of the users browser
+      localStorage.setItem("token", data.token)
+      setUser(data.user)
+    })
+}
+
 
 function App() {
   return (
